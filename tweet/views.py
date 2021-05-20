@@ -12,7 +12,7 @@ def get_home(request):
             form.save()
             return redirect('home')
 
-    all_tweets = Tweet.objects.all()
+    all_tweets = Tweet.objects.order_by('-date')
     form = TweetForm()
     context = {
         'tweets': all_tweets,
