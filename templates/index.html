@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/3fffbe4d21.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Twitter clone</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <form method="post">
+                <div class="form-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <div class="form-button">
+                    <button type="submit">Create Tweet</button>
+                </div>
+            </form>
+        </div>
+        <div class="tweet-section">
+            <div class="tweets">
+                {% for tweet in tweets %}
+                    <div class="tweet-card">
+                        {{ tweet.tweet }}
+                        {{ t }}
+                        <a href={% url 'delete_tweet' tweet.id  %}>
+                            <i class="fas fa-trash"></i>
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
